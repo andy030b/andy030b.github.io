@@ -128,10 +128,17 @@ body {
   font-size: 2rem;
   width: 0;
   animation:
-    typing 1s steps(21,end) forwards,
-    blink 0.75s step-end infinite,
-    fadeOut 1s ease forwards;
-  animation-delay: 0s, 0s, 2s;
+    typing 1.2s steps(23,end) forwards,
+    blink 0.75s step-end infinite;
+}
+/* 打字結束後名字與定位維持顯示 */
+.hero-sub {
+  margin-top: -1rem;
+  font-size: 1.1rem;
+  color: #bbb;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 1.2s;
 }
 
 /* Middle nav-links (index.html) */
@@ -142,7 +149,7 @@ body {
   opacity: 0;
   font-size: 1.25rem;
   animation: fadeIn 1s ease forwards;
-  animation-delay: 2s;
+  animation-delay: 1.6s;
 }
 .nav-links a {
   position: relative;
@@ -336,3 +343,41 @@ body {
 .post-meta { display: block; color: #aaa; font-size: 0.85rem; margin: 0.25rem 0 0.5rem; }
 .article p { margin-bottom: 1rem; }
 .article .post-meta { margin-bottom: 1.5rem; }
+/* ===== 手機版（600px 以下） ===== */
+@media (max-width: 600px) {
+  /* 頂部導覽：隱藏重複的 logo，連結縮小，放不下時可橫向捲動 */
+  .logo-link-top { display: none; }
+  .top-bar { padding: 0 0.5rem; }
+  .top-nav { flex: 1; min-width: 0; display: flex; justify-content: space-between; overflow-x: auto; white-space: nowrap; }
+  .top-nav a { font-size: 0.85rem; padding: 0.5rem 0.4rem; }
+
+  /* 首頁中間連結可換行 */
+  .nav-links { flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 1.1rem; padding: 0 1rem; }
+
+  /* 內容區左右留白縮小 */
+  .section { padding: 1rem 1rem 0; }
+  .filter-nav { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+
+  /* Anime 排行表改成卡片 */
+  .ranking-table { width: 100%; margin-left: 0; }
+  .ranking-table thead { display: none; }
+  .ranking-table, .ranking-table tbody { display: block; }
+  .ranking-table tr {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.35rem;
+    background: #2a2a2a;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .ranking-table tr[hidden] { display: none; }
+  .ranking-table td { display: block; border: none; padding: 0.15rem 0.25rem; text-align: center; white-space: normal; }
+  .ranking-table td:nth-child(1) { grid-column: 1; text-align: left; color: #aaa; font-size: 0.85rem; }
+  .ranking-table td:nth-child(1)::before { content: "#"; }
+  .ranking-table td:nth-child(2) { grid-column: 2 / 5; text-align: left; font-weight: 700; }
+  .ranking-table td:nth-child(3) { grid-column: 1 / 5; text-align: left; color: #aaa; font-size: 0.8rem; }
+  .ranking-table td:nth-child(n+4):nth-child(-n+7) { border-radius: 0.35rem; padding: 0.3rem 0.25rem; }
+  .ranking-table td:nth-child(n+4):nth-child(-n+7)::before { content: attr(data-label); display: block; font-size: 0.7rem; font-weight: 400; color: #ccc; }
+  .ranking-table td:nth-child(8) { grid-column: 1 / 5; text-align: left; color: #ccc; font-size: 0.85rem; }
+}

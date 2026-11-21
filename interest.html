@@ -33,13 +33,12 @@
   <main class="section interest-page">
     <!-- 主分類按鈕 -->
     <nav class="filter-nav">
-      <a href="#Reading" class="filter-btn active">Reading</a>
-      <a href="#Anime" class="filter-btn">Anime</a>
+      <a href="#Anime" class="filter-btn active">Anime</a>
       <a href="#Gaming" class="filter-btn">Gaming</a>
     </nav>
 
     <div class="filter-content">
-      <!-- Reading -->
+      <!-- Reading（內容尚未撰寫，先隱藏。要啟用時：移除這段註解，並把上方的 Reading 按鈕加回去）
       <div id="Reading" class="item">
         <div class="sub-filter-nav">
           <a href="#Chinese" class="sub-btn active">中文書</a>
@@ -56,6 +55,7 @@
           </div>
         </div>
       </div>
+      -->
 
       <!-- Anime：單一總表，可依類型或評分項排序 -->
       <div id="Anime" class="item">
@@ -136,20 +136,11 @@
 
       <!-- Gaming -->
       <div id="Gaming" class="item">
-        <div class="sub-filter-nav">
-          <a href="#PCSub" class="sub-btn active">PC</a>
-          <a href="#SwitchSub" class="sub-btn">Switch</a>
-        </div>
         <div class="sub-content">
-          <div id="PCSub" class="sub-item">
-            <h3>PC</h3>
-            <p>艾爾登法環 黑夜君臨：白癡遊戲 > 再來一把。</p>
-            <p>空洞騎士：有待評測。</p>
-          </div>
-          <div id="SwitchSub" class="sub-item">
-            <h3>Switch</h3>
-            <p>Switch 遊戲：心得與推薦。</p>
-          </div>
+          <h3>PC</h3>
+          <p>艾爾登法環 黑夜君臨：白癡遊戲 > 再來一把。</p>
+          <p>空洞騎士：有待評測。</p>
+          <!-- Switch 尚未撰寫，先隱藏 -->
         </div>
       </div>
     </div>
@@ -171,7 +162,7 @@
         btn.classList.add('active');
         showTab(btn.getAttribute('href').slice(1));
       }));
-      showTab('Reading');
+      showTab('Anime');
 
       // 子分類切換
       document.querySelectorAll('.sub-filter-nav').forEach(nav => {
@@ -200,6 +191,10 @@
       // 類型出現順序以表格原始順序為準，新增類型時不需改程式
       const genreOrder = [...new Set(rows.map(r => r.dataset.genre))];
       let sortKey = 'overall', sortDir = 'desc', genreSel = 'all';
+
+      // 手機版卡片需要每格的欄位名稱（由表頭文字產生）
+      const headLabels = [...document.querySelectorAll('#Anime thead th')].map(th => th.textContent.replace(/[▲▼\s]/g, ''));
+      rows.forEach(row => [...row.cells].forEach((td, i) => td.dataset.label = headLabels[i]));
 
       // 分數色階（欄位：3 綜合、4 劇情、5 角色、6 動畫）
       ['overall', 'story', 'character', 'animation'].forEach((key, i) => {
