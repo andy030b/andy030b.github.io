@@ -37,7 +37,6 @@
       <a href="#Sports" class="filter-btn">Sports</a>
       <a href="#Anime" class="filter-btn">Anime</a>
       <a href="#Gaming" class="filter-btn">Gaming</a>
-      <a href="#Sake" class="filter-btn">Sake</a>
     </nav>
 
     <div class="filter-content">
@@ -77,90 +76,63 @@
         </div>
       </div>
 
-      <!-- Anime -->
+      <!-- Anime：單一總表，可依類型或評分項排序 -->
       <div id="Anime" class="item">
         <h2>Anime 排行榜</h2>
-        <div class="anime-filter-nav sub-filter-nav">
-          <a href="#RomCom" class="sub-btn active">戀愛喜劇</a>
-          <a href="#Action" class="sub-btn">動作戰鬥</a>
+        <div class="ranking-controls">
+          <label>依據排序：</label>
+          <button data-sort="overall" class="rank-btn active">綜合</button>
+          <button data-sort="story" class="rank-btn">劇情</button>
+          <button data-sort="character" class="rank-btn">角色</button>
+          <button data-sort="animation" class="rank-btn">動畫</button>
+          <button data-sort="genre" class="rank-btn">類型</button>
         </div>
-        <div class="sub-content">
-          <!-- 戀愛喜劇 排行 -->
-          <div id="RomCom" class="sub-item">
-            <div class="ranking-controls">
-              <label>依據排序：</label>
-              <button data-sort="overall" class="rank-btn active">綜合</button>
-              <button data-sort="story" class="rank-btn">劇情</button>
-              <button data-sort="character" class="rank-btn">角色</button>
-              <button data-sort="animation" class="rank-btn">動畫</button>
-            </div>
-            <table class="ranking-table">
-              <thead>
-                <tr>
-                  <th>排名</th><th>作品</th><th data-key="overall">綜合</th><th data-key="story">劇情</th><th data-key="character">角色</th><th data-key="animation">動畫</th><th>評語</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr data-overall="9.3" data-story="9.6" data-character="9.0" data-animation="8.0">
-                  <td></td><td>四月是你的謊言</td><td>9.3</td><td>9.6</td><td>9.0</td><td>8.0</td><td>經典作品必看</td>
-                </tr>
-                <tr data-overall="9.0" data-story="9.0" data-character="9.4" data-animation="9.1">
-                  <td></td><td>堀與宮村</td><td>9.0</td><td>9.0</td><td>9.4</td><td>9.1</td><td>蠻喜歡畫風，每個角色的故事都有兼顧</td>
-                </tr>
-                <tr data-overall="8.5" data-story="9.5" data-character="8.8" data-animation="8.0">
-                  <td></td><td>青春豬頭少年不會夢到兔女郎學姊</td><td>8.5</td><td>9.5</td><td>8.8</td><td>8.0</td><td>人活著就是為了櫻島麻衣</td>
-                </tr>
-                <tr data-overall="8.8" data-story="8.6" data-character="8.9" data-animation="9.3">
-                  <td></td><td>徹夜之歌</td><td>8.8</td><td>8.6</td><td>8.9</td><td>9.3</td><td>慢熱，花半季才進入狀況</td>
-                </tr>
-                <tr data-overall="9.0" data-story="8.9" data-character="9.0" data-animation="9.5">
-                  <td></td><td>青春之箱</td><td>9.0</td><td>8.9</td><td>9.0</td><td>9.5</td><td>動畫經費拉滿，角色個性有描繪</td>
-                </tr>
-                <tr data-overall="8.7" data-story="9.0" data-character="9.0" data-animation="8.0">
-                  <td></td><td>擅長捉弄人的高木同學</td><td>8.7</td><td>9.0</td><td>9.0</td><td>8.0</td><td>高木同學原地結婚，現在!</td>
-                </tr>
-                <tr data-overall="9.4" data-story="9.7" data-character="9.4" data-animation="9.1">
-                  <td></td><td>我內心的糟糕念頭</td><td>9.4</td><td>9.7</td><td>9.4</td><td>9.1</td><td>慢熱(5集)，主角成長很有感觸</td>
-                </tr>
-                <tr data-overall="8.9" data-story="9.0" data-character="8.8" data-animation="9.0">
-                  <td></td><td>薰香花朵凛然綻放</td><td>8.9</td><td>9.0</td><td>8.8</td><td>9.0</td><td>男主角心思描寫細膩，觀看體驗不錯</td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-          <!-- 動作戰鬥 排行 -->
-          <div id="Action" class="sub-item">
-            <div class="ranking-controls">
-              <label>依據排序：</label>
-              <button data-sort="overall" class="rank-btn active">綜合</button>
-              <button data-sort="story" class="rank-btn">劇情</button>
-              <button data-sort="character" class="rank-btn">角色</button>
-              <button data-sort="animation" class="rank-btn">動畫</button>
-            </div>
-            <table class="ranking-table">
-              <thead>
-                <tr>
-                  <th>排名</th><th>作品</th><th data-key="overall">綜合</th><th data-key="story">劇情</th><th data-key="character">角色</th><th data-key="animation">動畫</th><th>評語</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr data-overall="9.7" data-story="9.8" data-character="9.5" data-animation="9.8">
-                  <td></td><td>進擊的巨人</td><td>9.7</td><td>9.8</td><td>9.5</td><td>9.8</td><td>神作</td>
-                </tr>
-                <tr data-overall="9.4" data-story="9.0" data-character="9.4" data-animation="9.7">
-                  <td></td><td>86：不存在的戰區</td><td>9.4</td><td>9.0</td><td>9.4</td><td>9.7</td><td>動畫頂的</td>
-                </tr>
-                <tr data-overall="9.6" data-story="9.4" data-character="9.7" data-animation="9.8">
-                  <td></td><td>葬送的芙莉蓮</td><td>9.6</td><td>9.4</td><td>9.7</td><td>9.8</td><td>期待第二季</td>
-                </tr>
-                <tr data-overall="9.2" data-story="9.2" data-character="9.4" data-animation="9.0">
-                  <td></td><td>坂本日常</td><td>9.2</td><td>9.2</td><td>9.4</td><td>9.0</td><td>大佛真香</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <table class="ranking-table">
+          <thead>
+            <tr>
+              <th>排名</th><th>作品</th><th>類型</th><th>綜合</th><th>劇情</th><th>角色</th><th>動畫</th><th>評語</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 新增作品：複製一列，改 data-genre 與各項分數即可 -->
+            <tr data-genre="戀愛喜劇" data-overall="9.3" data-story="9.6" data-character="9.0" data-animation="8.0">
+              <td></td><td>四月是你的謊言</td><td>戀愛喜劇</td><td>9.3</td><td>9.6</td><td>9.0</td><td>8.0</td><td>經典作品必看</td>
+            </tr>
+            <tr data-genre="戀愛喜劇" data-overall="9.0" data-story="9.0" data-character="9.4" data-animation="9.1">
+              <td></td><td>堀與宮村</td><td>戀愛喜劇</td><td>9.0</td><td>9.0</td><td>9.4</td><td>9.1</td><td>蠻喜歡畫風，每個角色的故事都有兼顧</td>
+            </tr>
+            <tr data-genre="戀愛喜劇" data-overall="8.5" data-story="9.5" data-character="8.8" data-animation="8.0">
+              <td></td><td>青春豬頭少年不會夢到兔女郎學姊</td><td>戀愛喜劇</td><td>8.5</td><td>9.5</td><td>8.8</td><td>8.0</td><td>人活著就是為了櫻島麻衣</td>
+            </tr>
+            <tr data-genre="戀愛喜劇" data-overall="8.8" data-story="8.6" data-character="8.9" data-animation="9.3">
+              <td></td><td>徹夜之歌</td><td>戀愛喜劇</td><td>8.8</td><td>8.6</td><td>8.9</td><td>9.3</td><td>慢熱，花半季才進入狀況</td>
+            </tr>
+            <tr data-genre="戀愛喜劇" data-overall="9.0" data-story="8.9" data-character="9.0" data-animation="9.5">
+              <td></td><td>青春之箱</td><td>戀愛喜劇</td><td>9.0</td><td>8.9</td><td>9.0</td><td>9.5</td><td>動畫經費拉滿，角色個性有描繪</td>
+            </tr>
+            <tr data-genre="戀愛喜劇" data-overall="8.7" data-story="9.0" data-character="9.0" data-animation="8.0">
+              <td></td><td>擅長捉弄人的高木同學</td><td>戀愛喜劇</td><td>8.7</td><td>9.0</td><td>9.0</td><td>8.0</td><td>高木同學原地結婚，現在!</td>
+            </tr>
+            <tr data-genre="戀愛喜劇" data-overall="9.4" data-story="9.7" data-character="9.4" data-animation="9.1">
+              <td></td><td>我內心的糟糕念頭</td><td>戀愛喜劇</td><td>9.4</td><td>9.7</td><td>9.4</td><td>9.1</td><td>慢熱(5集)，主角成長很有感觸</td>
+            </tr>
+            <tr data-genre="戀愛喜劇" data-overall="8.9" data-story="9.0" data-character="8.8" data-animation="9.0">
+              <td></td><td>薰香花朵凛然綻放</td><td>戀愛喜劇</td><td>8.9</td><td>9.0</td><td>8.8</td><td>9.0</td><td>男主角心思描寫細膩，觀看體驗不錯</td>
+            </tr>
+            <tr data-genre="動作戰鬥" data-overall="9.7" data-story="9.8" data-character="9.5" data-animation="9.8">
+              <td></td><td>進擊的巨人</td><td>動作戰鬥</td><td>9.7</td><td>9.8</td><td>9.5</td><td>9.8</td><td>神作</td>
+            </tr>
+            <tr data-genre="動作戰鬥" data-overall="9.4" data-story="9.0" data-character="9.4" data-animation="9.7">
+              <td></td><td>86：不存在的戰區</td><td>動作戰鬥</td><td>9.4</td><td>9.0</td><td>9.4</td><td>9.7</td><td>動畫頂的</td>
+            </tr>
+            <tr data-genre="動作戰鬥" data-overall="9.6" data-story="9.4" data-character="9.7" data-animation="9.8">
+              <td></td><td>葬送的芙莉蓮</td><td>動作戰鬥</td><td>9.6</td><td>9.4</td><td>9.7</td><td>9.8</td><td>期待第二季</td>
+            </tr>
+            <tr data-genre="動作戰鬥" data-overall="9.2" data-story="9.2" data-character="9.4" data-animation="9.0">
+              <td></td><td>坂本日常</td><td>動作戰鬥</td><td>9.2</td><td>9.2</td><td>9.4</td><td>9.0</td><td>大佛真香</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <!-- Gaming -->
@@ -180,31 +152,6 @@
             <p>Switch 遊戲：心得與推薦。</p>
           </div>
         </div>
-      </div>
-
-      <!-- Sake -->
-      <div id="Sake" class="item">
-        <!-- <h2>Sake 排行榜</h2> -->
-
-        <table class="ranking-table sake-table">
-          <thead>
-            <tr>
-              <th>排名</th><th>銘柄</th><th>酒造</th><th>酒米</th><th>精米步合</th><th>類型</th><th>口感</th><th>製造日期</th><th>開瓶日期</th><th>評語</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-overall="7.0">
-              <td></td><td>千代結</td><td>千代結</td><td>山田錦</td><td>50%</td><td>薰</td><td>淡麗甘口</td><td>2024-10-01</td><td>2025-01-05</td><td>山田錦的味道</td>
-            </tr>
-            <tr data-overall="9.1">
-              <td></td><td>蓬萊泉 吟</td><td>關谷</td><td>山田錦</td><td>35%</td><td>薰</td><td>淡麗甘口</td><td>2022-10-01</td><td>2025-08-16</td><td>香氣優雅，口感溫柔</td>
-            </tr>
-
-            <tr data-overall="8.8">
-              <td></td><td>釀人九平次 human</td><td>萬乘釀造</td><td>山田錦</td><td>45%</td><td>薰</td><td>淡麗甘口</td><td>2024</td><td>2025-08-06</td><td>哈密瓜香氣、微氣泡</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </main>
@@ -244,41 +191,35 @@
         showSub(subs[0].getAttribute('href').slice(1));
       });
 
-      // 排行排序（Anime）
-      document.querySelectorAll('.ranking-controls').forEach(ctrl => {
-        const rankBtns = [...ctrl.querySelectorAll('.rank-btn')];
-        const table = ctrl.nextElementSibling;
-        const tbody = table.querySelector('tbody');
-        let rows = Array.from(tbody.querySelectorAll('tr'));
-        function sortBy(key) {
-          rows.sort((a, b) => parseFloat(b.dataset[key]) - parseFloat(a.dataset[key]));
-          tbody.innerHTML = '';
-          rows.forEach((row, idx) => {
-            row.querySelector('td').textContent = idx + 1;
-            tbody.appendChild(row);
-          });
-        }
-        rankBtns.forEach(btn => btn.addEventListener('click', () => {
-          rankBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          sortBy(btn.dataset.sort);
-        }));
-        sortBy('overall');
-      });
-
-      // 排行排序（Sake）
-      const sakeBody = document.querySelector('.sake-table tbody');
-      if (sakeBody) {
-        const sakeRows = Array.from(sakeBody.querySelectorAll('tr'));
-        sakeRows.sort((a, b) => parseFloat(b.dataset.overall) - parseFloat(a.dataset.overall));
-        sakeBody.innerHTML = '';
-        sakeRows.forEach((row, idx) => {
-          row.querySelector('td').textContent = idx + 1;
-          sakeBody.appendChild(row);
+      // Anime 總表排序：評分項（高到低）或依類型分組（同類型內依綜合分數）
+      const ctrl = document.querySelector('#Anime .ranking-controls');
+      const rankBtns = [...ctrl.querySelectorAll('.rank-btn')];
+      const tbody = document.querySelector('#Anime .ranking-table tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const num = (row, key) => parseFloat(row.dataset[key]);
+      // 類型出現順序以表格原始順序為準，新增類型時不需改程式
+      const genreOrder = [...new Set(rows.map(r => r.dataset.genre))];
+      function sortBy(key) {
+        rows.sort((a, b) => {
+          if (key === 'genre') {
+            const g = genreOrder.indexOf(a.dataset.genre) - genreOrder.indexOf(b.dataset.genre);
+            if (g) return g;
+            return num(b, 'overall') - num(a, 'overall');
+          }
+          return (num(b, key) - num(a, key)) || (num(b, 'overall') - num(a, 'overall'));
+        });
+        rows.forEach((row, idx) => {
+          row.cells[0].textContent = idx + 1;
+          tbody.appendChild(row);
         });
       }
+      rankBtns.forEach(btn => btn.addEventListener('click', () => {
+        rankBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        sortBy(btn.dataset.sort);
+      }));
+      sortBy('overall');
     });
   </script>
 </body>
 </html>
-```

@@ -297,14 +297,16 @@ body {
 .ranking-table th { background: #222; }
 
 /* 讓排行榜表格更寬 */
-.ranking-table,
-.sake-table {
-  width: 60vw;
+.ranking-table {
+  width: min(92vw, 960px);
   max-width: none;
-  /* 將表格置中：
-     viewport 寬度的一半減去 45vw，讓 90vw 的表格水平置中 */
-  margin-left: calc(50% - 30vw);
+  /* 置中：容器一半寬 減去 表格一半寬 */
+  margin-left: calc(50% - min(46vw, 480px));
 }
+/* 類型與分數欄不換行，作品與評語可換行 */
+.ranking-table th,
+.ranking-table td:nth-child(n+3):not(:last-child) { white-space: nowrap; }
+.ranking-table th, .ranking-table td { padding: 0.5rem 0.6rem; }
 
 /* About / Blog */
 .sub-heading { margin-top: 2rem; font-size: 1.25rem; }
