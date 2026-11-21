@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - My GitHub</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .top-nav a.active::after { transform: scaleX(1); }
+  </style>
+</head>
+<body>
+  <header class="top-bar show">
+    <a href="index.html" class="logo-link-top">
+      <img class="top-logo" src="logo.png" alt="Logo" />
+    </a>
+    <nav class="top-nav show">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="interest.html">Interest</a>
+      <a href="japanese.html">五十音練習</a>
+    </nav>
+  </header>
+
+  <main class="section">
+    <h2>Blog</h2>
+    <!-- 新增文章：複製 posts/hello-world.html，再在下面加一個 <li> 即可（新的放最上面） -->
+    <ul class="post-list">
+      <li>
+        <a href="posts/hello-world.html">Hello, World：網站改版與部落格開張</a>
+        <span class="post-meta">2026-11-21 · 網站</span>
+        <p>這個部落格的第一篇文章，記錄網站的新架構，以及之後想寫的內容。</p>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="bottom-bar">© 2025 卓大一</footer>
+</body>
+</html>
