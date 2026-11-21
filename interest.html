@@ -60,18 +60,29 @@
       <!-- Anime：單一總表，可依類型或評分項排序 -->
       <div id="Anime" class="item">
         <h2>Anime 排行榜</h2>
-        <div class="ranking-controls">
-          <label>依據排序：</label>
-          <button data-sort="overall" class="rank-btn active">綜合</button>
-          <button data-sort="story" class="rank-btn">劇情</button>
-          <button data-sort="character" class="rank-btn">角色</button>
-          <button data-sort="animation" class="rank-btn">動畫</button>
-          <button data-sort="genre" class="rank-btn">類型</button>
+        <!-- 類型篩選按鈕由下方程式依表格資料自動產生 -->
+        <div class="ranking-controls" id="animeGenreFilter">
+          <label>類型：</label>
         </div>
+        <div class="ranking-controls" id="animeSort">
+          <label>依據排序：</label>
+          <button data-sort="overall" class="rank-btn active">綜合<span class="arrow"></span></button>
+          <button data-sort="story" class="rank-btn">劇情<span class="arrow"></span></button>
+          <button data-sort="character" class="rank-btn">角色<span class="arrow"></span></button>
+          <button data-sort="animation" class="rank-btn">動畫<span class="arrow"></span></button>
+          <button data-sort="genre" class="rank-btn">類型<span class="arrow"></span></button>
+        </div>
+        <p class="sort-hint">再點一次同一個排序可切換高到低／低到高，也可以直接點表格標題排序。</p>
         <table class="ranking-table">
           <thead>
             <tr>
-              <th>排名</th><th>作品</th><th>類型</th><th>綜合</th><th>劇情</th><th>角色</th><th>動畫</th><th>評語</th>
+              <th>排名</th><th>作品</th>
+              <th aria-sort="none"><button class="th-sort" data-sort="genre">類型<span class="arrow"></span></button></th>
+              <th aria-sort="none"><button class="th-sort" data-sort="overall">綜合<span class="arrow"></span></button></th>
+              <th aria-sort="none"><button class="th-sort" data-sort="story">劇情<span class="arrow"></span></button></th>
+              <th aria-sort="none"><button class="th-sort" data-sort="character">角色<span class="arrow"></span></button></th>
+              <th aria-sort="none"><button class="th-sort" data-sort="animation">動畫<span class="arrow"></span></button></th>
+              <th>評語</th>
             </tr>
           </thead>
           <tbody>
@@ -114,6 +125,13 @@
             </tr>
           </tbody>
         </table>
+        <p class="score-legend">
+          分數色階：
+          <span class="s-5">9.5 以上</span>
+          <span class="s-4">9.0–9.4</span>
+          <span class="s-3">8.5–8.9</span>
+          <span class="s-2">8.4 以下</span>
+        </p>
       </div>
 
       <!-- Gaming -->
@@ -172,34 +190,82 @@
         showSub(subs[0].getAttribute('href').slice(1));
       });
 
-      // Anime 總表排序：評分項（高到低）或依類型分組（同類型內依綜合分數）
-      const ctrl = document.querySelector('#Anime .ranking-controls');
-      const rankBtns = [...ctrl.querySelectorAll('.rank-btn')];
+      // Anime 總表：類型篩選 + 排序（按鈕或表格標題），再點同一項切換方向
       const tbody = document.querySelector('#Anime .ranking-table tbody');
       const rows = Array.from(tbody.querySelectorAll('tr'));
+      const sortBtns = [...document.querySelectorAll('#animeSort .rank-btn')];
+      const headBtns = [...document.querySelectorAll('#Anime .th-sort')];
+      const filterBox = document.getElementById('animeGenreFilter');
       const num = (row, key) => parseFloat(row.dataset[key]);
       // 類型出現順序以表格原始順序為準，新增類型時不需改程式
       const genreOrder = [...new Set(rows.map(r => r.dataset.genre))];
-      function sortBy(key) {
-        rows.sort((a, b) => {
-          if (key === 'genre') {
-            const g = genreOrder.indexOf(a.dataset.genre) - genreOrder.indexOf(b.dataset.genre);
-            if (g) return g;
-            return num(b, 'overall') - num(a, 'overall');
-          }
-          return (num(b, key) - num(a, key)) || (num(b, 'overall') - num(a, 'overall'));
+      let sortKey = 'overall', sortDir = 'desc', genreSel = 'all';
+
+      // 分數色階（欄位：3 綜合、4 劇情、5 角色、6 動畫）
+      ['overall', 'story', 'character', 'animation'].forEach((key, i) => {
+        rows.forEach(row => {
+          const v = num(row, key);
+          row.cells[3 + i].className = 's-' + (v >= 9.5 ? 5 : v >= 9.0 ? 4 : v >= 8.5 ? 3 : 2);
         });
-        rows.forEach((row, idx) => {
-          row.cells[0].textContent = idx + 1;
+      });
+
+      // 類型篩選按鈕
+      ['all', ...genreOrder].forEach(g => {
+        const b = document.createElement('button');
+        b.className = 'rank-btn' + (g === 'all' ? ' active' : '');
+        b.dataset.genre = g;
+        b.textContent = g === 'all' ? '全部' : g;
+        filterBox.appendChild(b);
+      });
+      filterBox.addEventListener('click', e => {
+        const b = e.target.closest('button');
+        if (!b) return;
+        genreSel = b.dataset.genre;
+        filterBox.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
+        render();
+      });
+
+      function setSort(key) {
+        if (key === sortKey) {
+          sortDir = sortDir === 'desc' ? 'asc' : 'desc';
+        } else {
+          sortKey = key;
+          sortDir = key === 'genre' ? 'asc' : 'desc';   // 分數預設高到低，類型預設照原始順序
+        }
+        render();
+      }
+      sortBtns.forEach(b => b.addEventListener('click', () => setSort(b.dataset.sort)));
+      headBtns.forEach(b => b.addEventListener('click', () => setSort(b.dataset.sort)));
+
+      function render() {
+        const sign = sortDir === 'asc' ? 1 : -1;
+        rows.sort((a, b) => {
+          const primary = sortKey === 'genre'
+            ? genreOrder.indexOf(a.dataset.genre) - genreOrder.indexOf(b.dataset.genre)
+            : num(a, sortKey) - num(b, sortKey);
+          return (primary * sign) || (num(b, 'overall') - num(a, 'overall'));   // 同分時綜合高者在前
+        });
+        let rank = 0;
+        rows.forEach(row => {
+          const show = genreSel === 'all' || row.dataset.genre === genreSel;
+          row.hidden = !show;
+          if (show) row.cells[0].textContent = ++rank;
           tbody.appendChild(row);
         });
+        const arrow = sortDir === 'desc' ? ' ▼' : ' ▲';
+        sortBtns.forEach(b => {
+          const on = b.dataset.sort === sortKey;
+          b.classList.toggle('active', on);
+          b.querySelector('.arrow').textContent = on ? arrow : '';
+        });
+        headBtns.forEach(b => {
+          const on = b.dataset.sort === sortKey;
+          b.querySelector('.arrow').textContent = on ? arrow : '';
+          b.closest('th').classList.toggle('sorted', on);
+          b.closest('th').setAttribute('aria-sort', on ? (sortDir === 'desc' ? 'descending' : 'ascending') : 'none');
+        });
       }
-      rankBtns.forEach(btn => btn.addEventListener('click', () => {
-        rankBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        sortBy(btn.dataset.sort);
-      }));
-      sortBy('overall');
+      render();
     });
   </script>
 </body>
